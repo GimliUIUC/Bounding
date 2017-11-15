@@ -131,7 +131,7 @@ for ii = 1:2:length(teout)
 end
 
 %% --------- visualize -----------
-% [t_even, X_even] = even_sample(tout,Xout,100);
+[t_even, X_even] = even_sample(tout,Xout,100);
 
 subplot(1,2,1)
 plot(tout,Xout(:,1:3))
@@ -139,9 +139,9 @@ legend('x','z','th')
 
 subplot(1,2,2)
 plot(tout,Xout(:,4:7))
-legend('dx','dz','dth','t_')
+legend('dx','dz','dth','t_s')
 
 figure
-% animate(t_even,X_even,params)
-animate(tout,Xout,teout,Xeout,params)
+animate(t_even,X_even,teout, Xeout, params)
+% animate(tout,Xout,teout,Xeout,params)
 
