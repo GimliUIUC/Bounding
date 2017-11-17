@@ -6,6 +6,7 @@ g = p.g;
 J = p.J;
 Kpth = p.Kpth;
 Kdth = p.Kdth;
+Kdx = p.Kdx;
 Kpz = p.Kpz;
 Kdz = p.Kdz;
 
@@ -30,15 +31,15 @@ s_b = X(9);
 
 % --- bookkeeping ---
 t_TD =    book.t_TD_b;
-
 s_st = (t - t_TD)/Tst;
 b = bezier(s_st,coeff1,coeff2);
-tau = -alpha_tau * b;
 
+% --- forces & moment ---
+tau = -alpha_tau * b;
 FHip = Kpz * (zd - z) + Kdz * (dzd - dz);
 Fth = 1/x * (Kpth*(0 - th) + Kdth*(0 - dth));
 Fz = alpha_z*b + FHip + Fth;
-Fx = (tau + x*Fz)/z;
+Fx = (tau + x*Fz)/z + Kdx*(0 - dx);
 
 ddx = Fx/M;
 ddz = Fz/M - g;

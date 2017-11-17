@@ -6,6 +6,7 @@ g = p.g;
 J = p.J;
 Kpth = p.Kpth;
 Kdth = p.Kdth;
+Kdx = p.Kdx;
 Kpz = p.Kpz;
 Kdz = p.Kdz;
 
@@ -32,9 +33,11 @@ s_st = (t - t_TD)/Tst;
 b = bezier(s_st,coeff1,coeff2);
 
 % --- forces & moment ---
-tau = alpha_tau * b + Kpth * (0 - th) + Kdth * (0 - dth);
-Fz = alpha_z*b + Kpz * (zd - z) + Kdz * (dzd - dz);
-Fx = (tau + x*Fz)/z;
+tau = alpha_tau * b;
+FHip = Kpz * (zd - z) + Kdz * (dzd - dz);
+Fth = 1/x * (Kpth*(0 - th) + Kdth*(0 - dth));
+Fz = alpha_z*b + FHip + Fth;
+Fx = (tau + x*Fz)/z + Kdx*(0 - dx);
 
 ddx = Fx/M;
 ddz = Fz/M - g;

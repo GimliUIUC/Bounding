@@ -17,10 +17,14 @@ function p = ctrl_params
 %     p.sw_co1 = [1 1 1 1];
 %     p.sw_co2 = [1 1 1 1];
     
-    p.Kpz = 1000;
+    p.Kdx = 720;
+    p.Kpz = 0;
     p.Kdz = 0;
-    p.Kpth = 9;
-    p.Kdth = 17;
+    p.Kpth = 5;
+    p.Kdth = 5;
+    
+    p.Nstep = 6;
+    
     p.k_time = 0.1;
     p.DeltaT = 0.347;
     
